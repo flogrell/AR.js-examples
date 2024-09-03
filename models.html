@@ -10,6 +10,8 @@
     <a-assets>
         <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
 	<a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
+	<a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
+	<a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
     </a-assets>
     
     <a-marker type="pattern" url="data/kanji.patt">
@@ -22,9 +24,25 @@
 
     <a-marker type="pattern" url="data/hiro.patt">
         <a-entity   position="0 0 0" 
-                    rotation="90 90 0"
+                    rotation="270 90 0"
                     scale="0.50 0.50 0.50"
                     gltf-model="#else" >
+        </a-entity>
+    </a-marker>
+
+    <a-marker type="pattern" url="data/letterA.patt">
+        <a-entity   position="0 0 0" 
+                    rotation="0 0 0"
+                    scale="0.60 0.60 0.60"
+                    gltf-model="#bbtor" >
+        </a-entity>
+    </a-marker>
+
+    <a-marker type="pattern" url="data/letterB.patt">
+        <a-entity   position="0 0 0" 
+                    rotation="0 0 0"
+                    scale="0.50 0.50 0.50"
+                    gltf-model="#TV" >
         </a-entity>
     </a-marker>
     
