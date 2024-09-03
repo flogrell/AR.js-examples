@@ -5,7 +5,9 @@
 <script src="js/aframe-ar.js"></script>
 <body style="margin: 0px; overflow: hidden;">
 
-<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+<a-scene embedded vr-mode-ui="enabled: false;" 
+	arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
+	renderer= "precision: medium; colorManagement: true;">
 
     <a-assets>
         <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
@@ -52,7 +54,7 @@
     </a-marker>
 
    <a-entity light="type: ambient; color: #DDD"></a-entity>
-   <a-entity light="type: directional; color: #FFF; intensity: 0.9" position="-0.5 1 1"></a-entity>
+   <a-entity light="type: directional; color: #FFF; intensity: 0.7" position="-0.5 1 1"></a-entity>
     
     <a-entity camera></a-entity>
     
