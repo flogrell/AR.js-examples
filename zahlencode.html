@@ -9,7 +9,7 @@
 
 <body style="margin: 0px; overflow: hidden;">
 
-<a-scene embedded vr-mode-ui="enabled: false; arjs="debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+<a-scene embedded vr-mode-ui="enabled: false; arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
 	<a-assets>
 		<a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
@@ -17,14 +17,14 @@
 	</a-assets>
 
 	<!-- 3D text -->
-	<a-marker type="barcode" value="15">
+	<a-marker type="barcode" value="0">
       		<!-- 
       			using aframe-text-geometry component
       			can set: bevelSize, bevelThickness, curveSegments, font, height, size, style, value.
       			alignment (centering) may be tricky; try calculating bounding box and repositioning.
       			for more info, see: https://www.npmjs.com/package/aframe-text-geometry-component
       		 -->
-      		<a-entity text-geometry="value: 15; font: #exoFont;"
+      		<a-entity text-geometry="value: 0; font: #exoFont;"
       			material="color: yellow; src: #pixels; repeat: 0.5 0.5;" 
       			rotation="-90 0 0">
       		</a-entity>
