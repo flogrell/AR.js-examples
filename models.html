@@ -10,14 +10,16 @@
     <a-assets>
         <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
 	<a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
-	<a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
+	<a-asset-item id="else-obj" src="models/goldelse_obj/model.obj"></a-asset-item>
+    	<a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
+	<a-asset-item id="bbtor" src="models/bbtorgltf/model.gltf"></a-asset-item>
 	<a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
 	<a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
     	<a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
     </a-assets>
     
     <a-marker type="barcode" value="0">
-	<a-entity light="type: directional; color: #EEE; intensity: 0.8" position="-1 1 0"></a-entity>
+	<a-entity light="type: ambient; color: #EEE;"></a-entity>
         <a-entity   position="0 0 0" 
                     rotation="0 0 0"
                     scale="0.60 0.60 0.60"
@@ -29,7 +31,7 @@
         <a-entity   position="0 0 0" 
                     rotation="270 90 0"
                     scale="0.50 0.50 0.50"
-                    gltf-model="#else" >
+                    obj-model="obj: #else-obj; mtl: #else-mtl" >
         </a-entity>
     </a-marker>
 
@@ -45,7 +47,7 @@
         <a-entity   position="0 0 0" 
                     rotation="0 0 0"
                     scale="0.009 0.009 0.009"
-                    obj-model="obj: #tv-obj; mtl: #tv-mtl"" >
+                    obj-model="obj: #tv-obj; mtl: #tv-mtl">
         </a-entity>
     </a-marker>
 
