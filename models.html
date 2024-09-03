@@ -12,13 +12,15 @@
 	<a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
 	<a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
 	<a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
+	<a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
+    	<a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
     </a-assets>
     
     <a-marker type="pattern" url="data/kanji.patt">
         <a-entity   position="0 0 0" 
                     rotation="0 0 0"
                     scale="0.60 0.60 0.60"
-                    gltf-model="#TV" >
+                    gltf-model="#dom" >
         </a-entity>
     </a-marker>
 
@@ -42,7 +44,7 @@
         <a-entity   position="0 0 0" 
                     rotation="0 0 0"
                     scale="0.20 0.20 0.20"
-                    gltf-model="#dom" >
+                    obj-model="obj: #tv-obj; mtl: #tv-mtl"" >
         </a-entity>
     </a-marker>
     
