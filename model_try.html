@@ -10,14 +10,16 @@
 	renderer= "precision: medium; colorManagement: true;">
 
     <a-assets>
-        <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
+              <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
 	      <a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
 	      <a-asset-item id="else-obj" src="models/goldelse_obj/model.obj"></a-asset-item>
-    	  <a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
+    	      <a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
 	      <a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
 	      <a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
 	      <a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
-    	  <a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
+    	      <a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
+	      <video id="vidtest" autoplay loop="true" src="videos/testvideo.mp4"></video>
+	      <img id="imgtest" src="images/basketball.png"> 
     </a-assets>
     
     <a-marker type="barcode" value="0">
@@ -51,6 +53,22 @@
                     obj-model="obj: #tv-obj; mtl: #tv-mtl">
         </a-entity>
     </a-marker>
+
+     <a-marker type="barcode" value="1">
+	<a-plane position="0 0 0" 
+                 rotation="-90 0 0"
+                 material="src: #imgtest;">
+        </a-plane>
+    </a-marker>
+
+    <a-marker type="barcode" value="2">
+	<a-plane position="0 0 0" 
+                 rotation="-90 0 0"
+                 material="src: #vidtest;">
+        </a-plane>
+    </a-marker>
+
+
     
     <a-entity camera></a-entity>
     
