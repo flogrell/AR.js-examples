@@ -3,6 +3,7 @@
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <script src="js/aframe.min.js"></script>
 <script src="js/aframe-ar.js"></script>
+<script src="js/aframe-text-geometry-component.min.js"></script>
 <body style="margin: 0px; overflow: hidden;">
 
 <a-scene embedded vr-mode-ui="enabled: false;" 
@@ -18,6 +19,9 @@
 	<a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
 	<a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
     	<a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
+	<img id="imgtest" src="images/kuehlbox.jpg"> 
+	<a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
+	<img id="pixels" src="images/pixels.png" />
     </a-assets>
     
     <a-marker type="barcode" value="0">
@@ -50,6 +54,21 @@
                     scale="0.009 0.009 0.009"
                     obj-model="obj: #tv-obj; mtl: #tv-mtl">
         </a-entity>
+    </a-marker>
+
+   <a-marker type="barcode" value="1">
+	<a-plane position="0 0 0" 
+                 rotation="-90 0 0"
+                 material="src: #imgtest;">
+        </a-plane>
+    </a-marker>
+
+    <!-- 3D text -->
+    <a-marker type="barcode" value="3">
+      	<a-entity text-geometry="value: Das hier ist ein AR Marker. ; font: #exoFont;"
+      			material="color: blue; src: #pixels; repeat: 0.5 0.5;" 
+      			rotation="-90 0 0">
+      	</a-entity>
     </a-marker>
     
     <a-entity camera></a-entity>
