@@ -5,6 +5,7 @@
   <script src="js/aframe.min.js"></script>
   <script src="js/aframe-ar.js"></script>
   <script src="js/aframe-text-geometry-component.min.js"></script>
+  <!-- Maskierungs-Plugin einbinden -->
   <script src="https://unpkg.com/aframe-mask@^1.0.3/dist/aframe-mask.min.js"></script>
   <script>
     function isAndroid() {
@@ -55,15 +56,16 @@
     <!-- Deine bestehenden Marker -->
     <!-- ... (hier bleibt alles wie bisher) ... -->
 
-    <!-- Marker 12 mit Portal und Maske -->
+    <!-- Marker 12 mit invertierter Maske -->
     <a-marker type="barcode" value="12">
-      <!-- Maske -->
+      <!-- Invertierte Maske -->
       <a-entity id="portal-mask" geometry="primitive: circle; radius: 1"
-                rotation="-90 0 0" material="color: black; shader: flat;" mask="true">
+                rotation="-90 0 0" material="color: black; shader: flat;"
+                mask="true; inverse: true">
       </a-entity>
-      <!-- Inhalt hinter der Maske -->
-      <a-entity id="portal-content" position="0 0 0" rotation="-90 0 0" mask="false">
-        <a-plane position="0 0 -1" width="2" height="2" material="src: #img360; side: double;"></a-plane>
+      <!-- Inhalt vor der Maske -->
+      <a-entity id="portal-content" position="0 0 0.01" rotation="-90 0 0" mask="false">
+        <a-plane position="0 0 0" width="2" height="2" material="src: #img360; side: double;"></a-plane>
       </a-entity>
     </a-marker>
 
