@@ -1,0 +1,81 @@
+<!doctype HTML>
+<html>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<script src="js/aframe.min.js"></script>
+<script src="js/aframe-ar.js"></script>
+<script src="js/aframe-text-geometry-component.min.js"></script>
+<script>
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent);
+}
+
+AFRAME.registerComponent('vidhandler', {
+  init: function () {
+    this.toggle = false;
+    this.vid = document.querySelector("#vidtest");
+    this.image = document.querySelector("#imgtest");
+    this.link = document.querySelector("#linktest");
+
+    if (isAndroid()) {
+      this.vid.pause();
+      this.image.setAttribute('visible', false); // Bild unsichtbar auf Android
+      this.link.setAttribute('visible', false);  // Link unsichtbar auf Android
+    } else {
+      // Auf anderen Geräten Bild und Link sichtbar machen
+      this.vid.setAttribute('visible', false);   // Video unsichtbar auf anderen Geräten
+      this.image.setAttribute('visible', true);  // Bild sichtbar auf anderen Geräten
+      this.link.setAttribute('visible', true);   // Link sichtbar auf anderen Geräten
+    }
+  },
+  tick: function(){
+    if (isAndroid() && this.el.object3D.visible == true) {
+      if (!this.toggle) {
+        this.toggle = true;
+        this.vid.play();
+      }
+    } else if (isAndroid()) {
+      this.toggle = false;
+      this.vid.pause();
+    }
+  }
+});
+</script>
+<body style="margin: 0px; overflow: hidden;">
+
+<a-scene embedded vr-mode-ui="enabled: false;" 
+	arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
+	renderer="precision: medium; colorManagement: true;">
+
+    <a-assets>
+        <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
+        <a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
+        <a-asset-item id="else-obj" src="models/goldelse_obj/model.obj"></a-asset-item>
+        <a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
+        <a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
+        <a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
+        <a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
+        <a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
+        <video id="vidtest" loop="true" src="videos/rick.mp4" crossorigin></video>
+        <img id="imgtest" src="images/kuehlbox.jpg" />
+        <a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
+        <img id="pixels" src="images/pixels.png" />
+    </a-assets>
+    
+    <a-marker type="barcode" value="2" vidhandler>
+        <!-- Das Video, das nur auf Android Geräten angezeigt wird -->
+        <a-plane position="0 0 0" rotation="-90 0 0" material="src:#vidtest" visible="false">
+        </a-plane>
+
+        <!-- Bild, das nur auf nicht-Android Geräten angezeigt wird -->
+        <a-plane position="0 0 0" rotation="-90 0 0" material="src:#imgtest" visible="false">
+        </a-plane>
+
+        <!-- Link, das nur auf nicht-Android Geräten angezeigt wird -->
+        <a-link href="https://www.example.com" position="0 0 0" rotation="-90 0 0" visible="false"></a-link>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+    
+</a-scene>
+</body>
+</html>
