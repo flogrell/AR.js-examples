@@ -56,16 +56,20 @@
     <!-- Deine bestehenden Marker -->
     <!-- ... (hier bleibt alles wie bisher) ... -->
 
-    <!-- Marker 12 mit invertierter Maske -->
+    <!-- Marker 12 mit angepasster Maske und Positionen -->
     <a-marker type="barcode" value="12">
-      <!-- Invertierte Maske -->
+      <!-- Invertierte Maske leicht nach vorne verschoben -->
       <a-entity id="portal-mask" geometry="primitive: circle; radius: 1"
-                rotation="-90 0 0" material="color: black; shader: flat;"
+                rotation="-90 0 0" position="0 0 0.01"
+                material="color: black; shader: flat;"
                 mask="true; inverse: true">
       </a-entity>
-      <!-- Inhalt vor der Maske -->
-      <a-entity id="portal-content" position="0 0 0.01" rotation="-90 0 0" mask="false">
-        <a-plane position="0 0 0" width="2" height="2" material="src: #img360; side: double;"></a-plane>
+      <!-- Inhalt leicht nach hinten verschoben -->
+      <a-entity id="portal-content" position="0 0 0"
+                rotation="-90 0 0" mask="false">
+        <a-plane position="0 0 -0.01" width="2" height="2"
+                 material="src: #img360; side: double;">
+        </a-plane>
       </a-entity>
     </a-marker>
 
