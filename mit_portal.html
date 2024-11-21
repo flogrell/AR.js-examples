@@ -1,93 +1,72 @@
 <!doctype HTML>
 <html>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<script src="js/aframe.min.js"></script>
-<script src="js/aframe-ar.js"></script>
-<script src="js/aframe-text-geometry-component.min.js"></script>
-<script>
-function isAndroid() {
-  return /Android/i.test(navigator.userAgent);
-}
+<head>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <script src="js/aframe.min.js"></script>
+  <script src="js/aframe-ar.js"></script>
+  <script src="js/aframe-text-geometry-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-mask@^1.0.3/dist/aframe-mask.min.js"></script>
+  <script>
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
 
-AFRAME.registerComponent('vidhandler', {
-  init: function () {
-    if (isAndroid()) {
-      this.toggle = false;
-      this.vid = document.querySelector("#vidtest");
-      this.vid.pause();
-    } else {
-      // Falls kein Android-Gerät, das Video komplett entfernen
-      const vidEntity = document.querySelector("#vidtest");
-      if (vidEntity) {
-        vidEntity.parentNode.removeChild(vidEntity);
+    AFRAME.registerComponent('vidhandler', {
+      init: function () {
+        if (isAndroid()) {
+          this.toggle = false;
+          this.vid = document.querySelector("#vidtest");
+          this.vid.pause();
+        } else {
+          // Falls kein Android-Gerät, das Video komplett entfernen
+          const vidEntity = document.querySelector("#vidtest");
+          if (vidEntity) {
+            vidEntity.parentNode.removeChild(vidEntity);
+          }
+        }
+      },
+      tick:function(){
+        if (isAndroid() && this.el.object3D.visible == true){
+          if(!this.toggle){
+            this.toggle = true;
+            this.vid.play();
+          }
+        } else if (isAndroid()) {
+          this.toggle = false;
+          this.vid.pause();
+        }
       }
-    }
-  },
-  tick:function(){
-    if (isAndroid() && this.el.object3D.visible == true){
-      if(!this.toggle){
-        this.toggle = true;
-        this.vid.play();
-      }
-    } else if (isAndroid()) {
-      this.toggle = false;
-      this.vid.pause();
-    }
-  }
-});
-</script>
+    });
+  </script>
+</head>
 <body style="margin: 0px; overflow: hidden;">
 
 <a-scene embedded vr-mode-ui="enabled: false;" 
-	arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
-	renderer= "precision: medium; colorManagement: true;">
-
+    arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
+    renderer= "precision: medium; colorManagement: true;">
+    
     <a-assets>
-          <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
-	      <a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
-	      <a-asset-item id="else-obj" src="models/goldelse_obj/model.obj"></a-asset-item>
-      	      <a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
-	      <a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
-	      <a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
-	      <a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
-      	      <a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
-	      <video id="vidtest" loop="true" src="videos/rick.mp4" crossorigin></video>
-	      <img id="imgtest" src="images/kuehlbox.jpg"> 
-	      <a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
-	      <img id="pixels" src="images/pixels.png" />
-	      <!-- Korrigierter Pfad und Attributname -->
-	      <img id="img360" src="images/360_topaz.png" />
+        <!-- Deine bestehenden Assets -->
+        <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
+        <!-- ... weitere Assets ... -->
+        <img id="img360" src="images/360_topaz.png" />
     </a-assets>
     
     <!-- Deine bestehenden Marker -->
     <!-- ... (hier bleibt alles wie bisher) ... -->
 
-    <!-- Marker 12 mit Portal -->
+    <!-- Marker 12 mit Portal und Maske -->
     <a-marker type="barcode" value="12">
-        <a-entity position="0 0 0" rotation="-90 0 0">
-            <!-- Portalrahmen -->
-            <a-ring
-                position="0 1 0"  <!-- Höhe angepasst -->
-                radius-inner="0.9"
-                radius-outer="1"
-                rotation="0 0 0"
-                material="color: #FFFFFF; side: double; opacity: 0.5">
-            </a-ring>
-            <!-- Portalinhalt -->
-            <a-entity position="0 1 0">
-                <a-sphere
-                    radius="5"
-                    phi-length="180"
-                    phi-start="0"
-                    theta-start="90"
-                    theta-length="180"
-                    rotation="0 180 0"
-                    material="src: #img360; side: double;">
-                </a-sphere>
-            </a-entity>
-        </a-entity>
+      <!-- Maske -->
+      <a-entity id="portal-mask" geometry="primitive: circle; radius: 1"
+                rotation="-90 0 0" material="color: black; shader: flat;" mask="true">
+      </a-entity>
+      <!-- Inhalt hinter der Maske -->
+      <a-entity id="portal-content" position="0 0 0" rotation="-90 0 0" mask="false">
+        <a-plane position="0 0 -1" width="2" height="2" material="src: #img360; side: double;"></a-plane>
+      </a-entity>
     </a-marker>
-    
+
     <a-entity camera></a-entity>
     
 </a-scene>
