@@ -11,31 +11,29 @@ function isAndroid() {
 
 AFRAME.registerComponent('vidhandler', {
   init: function () {
-    this.toggle = false;
     this.vid = document.querySelector("#vidtest");
     this.image = document.querySelector("#imgtest");
     this.link = document.querySelector("#linktest");
 
+    // Initialer Status: Video unsichtbar, Bild und Link sichtbar
     if (isAndroid()) {
-      this.vid.pause();
-      this.vid.setAttribute('visible', true);   
-      this.image.setAttribute('visible', false); // Bild unsichtbar auf Android
-      this.link.setAttribute('visible', false);  // Link unsichtbar auf Android
+      // Auf Android wird das Video angezeigt
+      this.vid.setAttribute('visible', true);
+      this.image.setAttribute('visible', false);
+      this.link.setAttribute('visible', false);
     } else {
-      // Auf anderen Geräten Bild und Link sichtbar machen
-      this.vid.setAttribute('visible', false);   // Video unsichtbar auf anderen Geräten
-      this.image.setAttribute('visible', true);  // Bild sichtbar auf anderen Geräten
-      this.link.setAttribute('visible', true);   // Link sichtbar auf anderen Geräten
+      // Auf Nicht-Android-Geräten wird das Video unsichtbar
+      this.vid.setAttribute('visible', false);
+      this.image.setAttribute('visible', true);
+      this.link.setAttribute('visible', true);
     }
   },
-  tick: function(){
-    if (isAndroid() && this.el.object3D.visible == true) {
-      if (!this.toggle) {
-        this.toggle = true;
-        this.vid.play();
-      }
-    } else if (isAndroid()) {
-      this.toggle = false;
+  tick: function () {
+    // Nur auf Android das Video abspielen
+    if (isAndroid() && this.el.object3D.visible === true) {
+      this.vid.play();
+    } else if (!isAndroid()) {
+      // Auf Nicht-Android-Geräten Video pausieren
       this.vid.pause();
     }
   }
@@ -63,16 +61,16 @@ AFRAME.registerComponent('vidhandler', {
     </a-assets>
     
     <a-marker type="barcode" value="2" vidhandler>
-        <!-- Das Video, das nur auf Android Geräten angezeigt wird -->
+        <!-- Video, das nur auf Android sichtbar ist -->
         <a-plane position="0 0 0" rotation="-90 0 0" material="src:#vidtest" visible="false">
         </a-plane>
 
-        <!-- Bild, das nur auf nicht-Android Geräten angezeigt wird -->
+        <!-- Bild, das nur auf Nicht-Android-Geräten sichtbar ist -->
         <a-plane position="0 0 0" rotation="-90 0 0" material="src:#imgtest" visible="false">
         </a-plane>
 
-        <!-- Link, das nur auf nicht-Android Geräten angezeigt wird -->
-        <a-link href="https://www.example.com" position="0 0 0" rotation="-90 0 0" visible="false"></a-link>
+        <!-- Link, der nur auf Nicht-Android-Geräten sichtbar ist -->
+        <a-link href="https://www.example.com" position="0 0 0" rotation="-90 0 0" visible="false" id="linktest"></a-link>
     </a-marker>
 
     <a-entity camera></a-entity>
