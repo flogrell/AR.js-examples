@@ -18,6 +18,7 @@ AFRAME.registerComponent('vidhandler', {
 
     if (isAndroid()) {
       this.vid.pause();
+      this.vid.setAttribute('visible', true);   
       this.image.setAttribute('visible', false); // Bild unsichtbar auf Android
       this.link.setAttribute('visible', false);  // Link unsichtbar auf Android
     } else {
