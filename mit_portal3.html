@@ -5,8 +5,8 @@
   <script src="js/aframe.min.js"></script>
   <script src="js/aframe-ar.js"></script>
   <script src="js/aframe-text-geometry-component.min.js"></script>
-  <!-- Maskierungs-Plugin einbinden -->
-  <script src="https://unpkg.com/aframe-mask@^1.0.3/dist/aframe-mask.min.js"></script>
+  <!-- Portal Shader Plugin einbinden -->
+  <script src="https://unpkg.com/aframe-portal-shader@1.0.1/dist/aframe-portal-shader.min.js"></script>
   <script>
     function isAndroid() {
       return /Android/i.test(navigator.userAgent);
@@ -56,19 +56,16 @@
     <!-- Deine bestehenden Marker -->
     <!-- ... (hier bleibt alles wie bisher) ... -->
 
-    <!-- Marker 12 mit angepasster Maske und Positionen -->
+    <!-- Marker 12 mit Portal-Shader -->
     <a-marker type="barcode" value="12">
-      <!-- Invertierte Maske leicht nach vorne verschoben -->
-      <a-entity id="portal-mask" geometry="primitive: circle; radius: 1"
-                rotation="-90 0 0" position="0 0 0.01"
-                material="color: black; shader: flat;"
-                mask="true; inverse: true">
-      </a-entity>
-      <!-- Inhalt leicht nach hinten verschoben -->
-      <a-entity id="portal-content" position="0 0 0"
-                rotation="-90 0 0" mask="false">
-        <a-plane position="0 0 -0.01" width="2" height="2"
-                 material="src: #img360; side: double;">
+      <a-entity position="0 0 0" rotation="-90 0 0">
+        <!-- Portal-Rahmen -->
+        <a-ring position="0 1 0" rotation="0 0 0" radius-inner="0.9" radius-outer="1"
+                material="color: #FFFFFF; side: double;">
+        </a-ring>
+        <!-- Portal-Ebene mit Shader -->
+        <a-plane position="0 1 0.01" rotation="0 0 0" width="2" height="2"
+                 material="shader: portal; src: #img360; portalRadius: 1; side: double;">
         </a-plane>
       </a-entity>
     </a-marker>
@@ -77,4 +74,5 @@
     
 </a-scene>
 </body>
-</html> 
+</html>
+
