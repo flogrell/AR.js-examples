@@ -1,40 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Willkommen in der AR APP</title>
-	<link rel=stylesheet href="index/index.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to use AR?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #007BFF; /* Blue background */
+      color: white;
+      text-align: center;
+    }
+    header {
+      padding-top: 50px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    p {
+      font-size: 1.1rem;
+      margin: 20px 0;
+      padding: 0 20px;
+    }
+    img {
+      width: 80%;
+      max-width: 400px;
+      margin: 20px 0;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: white;
+      color: #007BFF;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-
-<div class="bigTitle">AR.js examples</div>
-<hr>
-
-The goal of this collection is to provide a set of basic and instructive examples that introduce the various features in the Javascript-based Augmented Reality (AR) library, 
-<a href="https://github.com/jeromeetienne/AR.js">AR.js</a> (version 2), built upon the <a href="https://aframe.io/">A-Frame</a> and <a href="https://threejs.org/">three.js</a> libraries.
-
-<br/><br/>
-Viewing the AR examples will require a device with a camera and various marker images to be detected, which are available in the <code>markers</code> directory in this repository. Requires the kanji marker unless otherwise specified.
-
-<br/><br/>
-Source code hosted at <a class="toc" href="https://github.com/stemkoski/AR.js-examples">github.com/stemkoski/AR.js-examples</a>.
-
-<hr/>
-
-<table class="fancy"><tr>
-	<td><a href="basic.html"><img src="index/basic.png" class="superImage" /></a></td>
-	<td class="tableText"><a href="basic.html">Hello, AR World!</a>
-	<p>A basic scene that places plain and textured shapes on markers (kanji, barcodes 0/1/2).</p></td>
-</tr></table>
-
-
-
-<!--
-<table class="fancy"><tr>
-	<td><img src="index/IMAGE-NAME.png" class="superImage" /></td>
-	<td class="tableText"><a href="FILE.html">TITLE</a>
-	<p>DESCRIPTION</p></td>
-</tr></table>
--->
-
+  <header>
+    <h1>How to use AR?</h1>
+    <p>Augmented Reality (AR) can be used to enhance your real-world experiences by overlaying digital content on your surroundings. Simply use your device's camera to get started and explore the possibilities of AR.</p>
+    <img src="index/basic.png" alt="AR Example">
+    <button class="btn" onclick="window.location.href='basic.html'">Let's go!</button>
+  </header>
 </body>
 </html>
