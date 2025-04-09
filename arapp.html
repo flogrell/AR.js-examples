@@ -59,6 +59,7 @@ AFRAME.registerComponent('vidhandler', {
 	      <a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
 	      <img id="pixels" src="images/pixels.png" />
 	      <img id="img360" src="images/DSC_0021.JPG" />
+	      <img id="fridge" src="images/fridge.JPG" />
     </a-assets>
     
     <a-marker type="barcode" value="0">
@@ -130,10 +131,18 @@ AFRAME.registerComponent('vidhandler', {
       	</a-link>
     </a-marker>
 -->
+    <!-- 
+    <a-marker type="barcode" value="12">
+      	<a-link image="#img360" title="Minibar" position="0 0 -1" rotation="-90 0 0">
+      	</a-link>
+    </a-marker>
+-->
 
     <a-marker type="barcode" value="12">
-      	<a-link image="#img360" title="Minibar" position="0 0 0" rotation="-90 0 0">
-      	</a-link>
+	<a-plane position="0 0 -1" 
+                 rotation="-90 0 0"
+                 material="src: #fridge">
+        </a-plane>
     </a-marker>
     
     <a-entity camera></a-entity>
