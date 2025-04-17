@@ -36,16 +36,17 @@ AFRAME.registerComponent('vidhandler', {
   }
 });
 </script>
-<body style="margin: 0px; overflow: hidden;">
-
-<div id="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:sans-serif;">
-  Loading AR Scene...
-</div>
 <script>
   document.querySelector('a-scene').addEventListener('loaded', () => {
     document.getElementById('loader').style.display = 'none';
   });
 </script>
+<body style="margin: 0px; overflow: hidden;">
+
+<div id="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:sans-serif;">
+  Loading AR Scene...
+</div>
+
 	
 <!-- add some info at the top of the page -->
 <p align="center">Willkommen in der AR-APP<br>Schaut euch nach AR-Markern um und scannt sie!<br>Look for AR-marks and scan them!</p> 
