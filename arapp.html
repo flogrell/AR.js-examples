@@ -45,20 +45,17 @@ AFRAME.registerComponent('vidhandler', {
 	
     <a-assets>
               <a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
-	      <a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
 	      <a-asset-item id="else-obj" src="models/goldelse_obj/model.obj"></a-asset-item>
     	      <a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
 	      <a-asset-item id="bbtor-obj" src="models/bbtor_obj/model.obj"></a-asset-item>
     	      <a-asset-item id="bbtor-mtl" src="models/bbtor_obj/model.mtl"></a-asset-item>
-	      <a-asset-item id="bbtor" src="models/bbtor/model.gltf"></a-asset-item>
-	      <a-asset-item id="TV" src="models/TVTower/model.gltf"></a-asset-item>
 	      <a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
     	      <a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
 	      <video id="vidtest" loop="true" src="videos/rick.mp4" crossorigin></video>
 	      <img id="imgtest" src="images/kuehlbox.jpg"> 
 	      <a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
 	      <img id="pixels" src="images/pixels.png" />
-	      <img id="img360" src="images/DSC_0021.JPG" />
+	      <!--<img id="img360" src="images/DSC_0021.JPG" />-->
 	      <img id="fridge" src="images/fridge.JPG" />
     </a-assets>
     
@@ -132,10 +129,10 @@ AFRAME.registerComponent('vidhandler', {
     </a-marker>
 -->
  
-    <a-marker type="barcode" value="13">
+<!--<a-marker type="barcode" value="13">
       	<a-link image="#img360" title="Minibar" position="0 0 0" rotation="-90 0 0">
       	</a-link>
-    </a-marker>
+    </a-marker>-->
 
     <a-marker type="barcode" value="12">
 	<a-plane position="0 0 0" 
