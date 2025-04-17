@@ -36,36 +36,7 @@ AFRAME.registerComponent('vidhandler', {
   }
 });
 </script>
-<script>
-document.querySelector('a-scene').addEventListener('loaded', () => {
-  console.log('Scene is loaded, now loading secondary assets...');
-  
-  const assets = document.querySelector('a-assets');
 
-  // List of secondary assets to load
-  const secondaryAssets = [
-    { type: 'a-asset-item', id: 'dom', src: 'models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf' },
-    { type: 'a-asset-item', id: 'else-obj', src: 'models/goldelse_obj/model.obj' },
-    { type: 'a-asset-item', id: 'else-mtl', src: 'models/goldelse_obj/model.mtl' },
-    { type: 'a-asset-item', id: 'bbtor-obj', src: 'models/bbtor_obj/model.obj' },
-    { type: 'a-asset-item', id: 'bbtor-mtl', src: 'models/bbtor_obj/model.mtl' },
-    { type: 'a-asset-item', id: 'tv-obj', src: 'models/tvtowerobj/model.obj' },
-    { type: 'a-asset-item', id: 'tv-mtl', src: 'models/tvtowerobj/model.mtl' },
-    { type: 'video', id: 'vidtest', src: 'videos/rick.mp4', loop: true, crossorigin: 'anonymous' },
-    { type: 'img', id: 'fridge', src: 'images/fridge.JPG' },
-    { type: 'img', id: 'imgtest', src: 'images/kuehlbox.jpg' },
-  ];
-
-  // Dynamically append them
-  secondaryAssets.forEach(assetData => {
-    const el = document.createElement(assetData.type);
-    for (const key in assetData) {
-      if (key !== 'type') el.setAttribute(key, assetData[key]);
-    }
-    assets.appendChild(el);
-  });
-});
-</script>
 <!--<div id="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:sans-serif;">
   Loading AR Scene...
 </div>
@@ -188,5 +159,35 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     <a-entity camera></a-entity>
     
 </a-scene>
+<script>
+document.querySelector('a-scene').addEventListener('loaded', () => {
+  console.log('Scene is loaded, now loading secondary assets...');
+  
+  const assets = document.querySelector('a-assets');
+
+  // List of secondary assets to load
+  const secondaryAssets = [
+    { type: 'a-asset-item', id: 'dom', src: 'models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf' },
+    { type: 'a-asset-item', id: 'else-obj', src: 'models/goldelse_obj/model.obj' },
+    { type: 'a-asset-item', id: 'else-mtl', src: 'models/goldelse_obj/model.mtl' },
+    { type: 'a-asset-item', id: 'bbtor-obj', src: 'models/bbtor_obj/model.obj' },
+    { type: 'a-asset-item', id: 'bbtor-mtl', src: 'models/bbtor_obj/model.mtl' },
+    { type: 'a-asset-item', id: 'tv-obj', src: 'models/tvtowerobj/model.obj' },
+    { type: 'a-asset-item', id: 'tv-mtl', src: 'models/tvtowerobj/model.mtl' },
+    { type: 'video', id: 'vidtest', src: 'videos/rick.mp4', loop: true, crossorigin: 'anonymous' },
+    { type: 'img', id: 'fridge', src: 'images/fridge.JPG' },
+    { type: 'img', id: 'imgtest', src: 'images/kuehlbox.jpg' },
+  ];
+
+  // Dynamically append them
+  secondaryAssets.forEach(assetData => {
+    const el = document.createElement(assetData.type);
+    for (const key in assetData) {
+      if (key !== 'type') el.setAttribute(key, assetData[key]);
+    }
+    assets.appendChild(el);
+  });
+});
+</script>
 </body>
 </html>
