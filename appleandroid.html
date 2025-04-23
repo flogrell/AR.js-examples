@@ -170,12 +170,11 @@ AFRAME.registerComponent('vidhandler', {
 </a-scene>
 <script>
 document.querySelector('a-scene').addEventListener('loaded', () => {
-  console.log('Scene is loaded, now loading secondary assets...');
+  console.log('Scene is loaded, now appending secondary assets...');
 
   const assets = document.querySelector('a-assets');
-  const scene = document.querySelector('a-scene');
 
-  const delayedAssets = [
+  const secondaryAssets = [
     { type: 'a-asset-item', id: 'dom', src: 'models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf' },
     { type: 'a-asset-item', id: 'else-obj', src: 'models/goldelse_obj/model.obj' },
     { type: 'a-asset-item', id: 'else-mtl', src: 'models/goldelse_obj/model.mtl' },
@@ -189,18 +188,20 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
   ];
 
   let loadedCount = 0;
+  const totalAssets = secondaryAssets.length;
 
-  delayedAssets.forEach(asset => {
-    const el = document.createElement(asset.type);
-    for (const key in asset) {
-      if (key !== 'type') el.setAttribute(key, asset[key]);
+  secondaryAssets.forEach(assetData => {
+    const el = document.createElement(assetData.type);
+    for (const key in assetData) {
+      if (key !== 'type') el.setAttribute(key, assetData[key]);
     }
 
-    el.addEventListener('loaded', () => {
+    // Count when asset loads
+    el.addEventListener('load', () => {
       loadedCount++;
-      console.log(`Loaded asset ${asset.id} (${loadedCount}/${delayedAssets.length})`);
-      if (loadedCount === delayedAssets.length) {
-        console.log("All delayed assets loaded!");
+      console.log(`Loaded asset ${el.id} (${loadedCount}/${totalAssets})`);
+      if (loadedCount === totalAssets) {
+        console.log('All secondary assets loaded. Inserting entities...');
         insertEntities();
       }
     });
@@ -208,6 +209,8 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     assets.appendChild(el);
     console.log(`Appended asset:`, el.outerHTML);
   });
+});
+
 
 function insertEntities() {
   // Marker 0 - GLTF model
