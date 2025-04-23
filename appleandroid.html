@@ -72,7 +72,7 @@ AFRAME.registerComponent('vidhandler', {
 	      <video id="vidtest" loop="true" src="videos/rick.mp4" crossorigin></video>
 	      <img id="img360" src="images/kuehlschrank.jpeg" />-->
     </a-assets>
-    
+    <!--
     <a-marker type="barcode" value="0">
         <a-entity position="0 -1 -1" 
                   rotation="0 0 0"
@@ -96,6 +96,7 @@ AFRAME.registerComponent('vidhandler', {
                   obj-model="obj: #bbtor-obj; mtl: #bbtor-mtl" >
         </a-entity>
     </a-marker>
+-->
 <!-- for tests:	
     <a-marker type="barcode" value="15">
         <a-entity position="0 0 0" 
@@ -105,7 +106,7 @@ AFRAME.registerComponent('vidhandler', {
         </a-entity>
     </a-marker>
 -->
-
+<!--
     <a-marker type="barcode" value="9">
         <a-entity position="0 -1 -1" 
                   rotation="0 0 0"
@@ -113,21 +114,21 @@ AFRAME.registerComponent('vidhandler', {
                   obj-model="obj: #tv-obj; mtl: #tv-mtl">
         </a-entity>
     </a-marker>
-
+-->
      <a-marker type="barcode" value="1">
 	<a-plane position="0 0 -1" 
                  rotation="-90 0 0"
                  material="src: #imgtest;">
         </a-plane>
     </a-marker>
-
+<!--
     <a-marker type="barcode" value="2" vidhandler>
 	 <a-plane position='0 0 0'  
 		 rotation="-90 0 0" 
 		 material='src:#vidtest'>
 	</a-plane>
     </a-marker>
-
+-->
     <!-- 3D text -->
     <a-marker type="barcode" value="3">
       	<a-entity text-geometry="value: Ein AR Marker. ; font: #exoFont; size: 0.2;"
@@ -162,11 +163,11 @@ AFRAME.registerComponent('vidhandler', {
 <script>
 document.querySelector('a-scene').addEventListener('loaded', () => {
   console.log('Scene is loaded, now loading secondary assets...');
-  
-  const assets = document.querySelector('a-assets');
 
-  // List of secondary assets to load
-  const secondaryAssets = [
+  const assets = document.querySelector('a-assets');
+  const scene = document.querySelector('a-scene');
+
+  const delayedAssets = [
     { type: 'a-asset-item', id: 'dom', src: 'models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf' },
     { type: 'a-asset-item', id: 'else-obj', src: 'models/goldelse_obj/model.obj' },
     { type: 'a-asset-item', id: 'else-mtl', src: 'models/goldelse_obj/model.mtl' },
@@ -179,15 +180,91 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     { type: 'img', id: 'imgtest', src: 'images/kuehlbox.jpg' },
   ];
 
-  // Dynamically append them
-  secondaryAssets.forEach(assetData => {
-    const el = document.createElement(assetData.type);
-    for (const key in assetData) {
-      if (key !== 'type') el.setAttribute(key, assetData[key]);
+  let loadedCount = 0;
+
+  delayedAssets.forEach(asset => {
+    const el = document.createElement(asset.type);
+    for (const key in asset) {
+      if (key !== 'type') el.setAttribute(key, asset[key]);
     }
+
+    el.addEventListener('loaded', () => {
+      loadedCount++;
+      console.log(`Loaded asset ${asset.id} (${loadedCount}/${delayedAssets.length})`);
+      if (loadedCount === delayedAssets.length) {
+        console.log("All delayed assets loaded!");
+        insertEntities();
+      }
+    });
+
     assets.appendChild(el);
   });
+
+function insertEntities() {
+  // Marker 0 - GLTF model
+  const marker0 = document.querySelector('a-marker[value="0"]');
+  const ent0 = document.createElement('a-entity');
+  ent0.setAttribute('gltf-model', '#dom');
+  ent0.setAttribute('position', '0 -1 -1');
+  ent0.setAttribute('scale', '0.6 0.6 0.6');
+  marker0.appendChild(ent0);
+
+  // Marker 10 - Goldelse OBJ/MTL
+  const marker10 = document.querySelector('a-marker[value="10"]');
+  const ent10 = document.createElement('a-entity');
+  ent10.setAttribute('obj-model', 'obj: #else-obj; mtl: #else-mtl');
+  ent10.setAttribute('position', '0 -1 -1');
+  ent10.setAttribute('scale', '0.5 0.5 0.5');
+  ent10.setAttribute('rotation', '270 90 0');
+  marker10.appendChild(ent10);
+
+  // Marker 15 - Brandenburger Tor OBJ/MTL
+  const marker15 = document.querySelector('a-marker[value="15"]');
+  const ent15 = document.createElement('a-entity');
+  ent15.setAttribute('obj-model', 'obj: #bbtor-obj; mtl: #bbtor-mtl');
+  ent15.setAttribute('position', '0 -1 -1');
+  ent15.setAttribute('scale', '0.3 0.3 0.3');
+  ent15.setAttribute('rotation', '270 90 0');
+  marker15.appendChild(ent15);
+
+  // Marker 9 - TV Tower OBJ/MTL
+  const marker9 = document.querySelector('a-marker[value="9"]');
+  const ent9 = document.createElement('a-entity');
+  ent9.setAttribute('obj-model', 'obj: #tv-obj; mtl: #tv-mtl');
+  ent9.setAttribute('position', '0 -1 -1');
+  ent9.setAttribute('scale', '0.009 0.009 0.009');
+  ent9.setAttribute('rotation', '0 0 0');
+  marker9.appendChild(ent9);
+
+  // Marker 1 - Image plane (imgtest)
+  const marker1 = document.querySelector('a-marker[value="1"]');
+  const imgPlane1 = document.createElement('a-plane');
+  imgPlane1.setAttribute('position', '0 0 -1');
+  imgPlane1.setAttribute('rotation', '-90 0 0');
+  imgPlane1.setAttribute('material', 'src: #imgtest');
+  marker1.appendChild(imgPlane1);
+
+  // Marker 2 - Video plane
+  const marker2 = document.querySelector('a-marker[value="2"]');
+  const videoPlane = document.createElement('a-plane');
+  videoPlane.setAttribute('position', '0 0 0');
+  videoPlane.setAttribute('rotation', '-90 0 0');
+  videoPlane.setAttribute('material', 'src: #vidtest');
+  marker2.appendChild(videoPlane);
+
+  // Marker 12 - Image plane (fridge)
+  const marker12 = document.querySelector('a-marker[value="12"]');
+  const imgPlane2 = document.createElement('a-plane');
+  imgPlane2.setAttribute('position', '0 0 -1');
+  imgPlane2.setAttribute('rotation', '-90 0 0');
+  imgPlane2.setAttribute('material', 'src: #fridge');
+  marker12.appendChild(imgPlane2);
+
+  console.log("All entities inserted and ready!");
+}
+
 });
 </script>
+
 </body>
 </html>
