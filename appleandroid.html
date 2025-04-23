@@ -52,7 +52,7 @@ AFRAME.registerComponent('vidhandler', {
 <p align="center">Willkommen in der AR-APP<br>Schaut euch nach AR-Markern um und scannt sie!<br>Look for AR-marks and scan them!</p> 
 	
 <a-scene embedded vr-mode-ui="enabled: false;" 
-	arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
+	arjs="debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
 	renderer= "precision: medium; colorManagement: true;">
 
 	
@@ -198,6 +198,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     });
 
     assets.appendChild(el);
+    console.log(`Appended asset:`, el.outerHTML);
   });
 
 function insertEntities() {
