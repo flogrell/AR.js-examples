@@ -87,6 +87,7 @@ AFRAME.registerComponent('vidhandler', {
 <div id="loading-screen">
   <div class="spinner"></div>
   <p>Loading AR experience...</p>
+  <p>Find and scan AR marker to see hidden details.</p>
 </div>
 	
 <a-scene embedded vr-mode-ui="enabled: false;" 
@@ -172,7 +173,7 @@ AFRAME.registerComponent('vidhandler', {
 		<a-plane color="white" rotation="-90 0 0" position="0 -0.25 0" width="3" material="transparent: true; opacity: 0.90"></a-plane>
 
 		<!-- for more properties, see https://github.com/aframevr/aframe/blob/master/docs/components/text.md -->
-		<a-text value="This is an AR Marker! /n Find more and scan them." font="fonts/Exo2Bold.fnt" color="red" rotation="-90 0 0" align="center" scale="2 2 2"></a-text>
+		<a-text value="This is an AR Marker! Find more and scan them." font="fonts/Exo2Bold.fnt" color="red" rotation="-90 0 0" align="center" width="1.5" ></a-text>
 		<!-- avoiding z-fighting is difficult; may want to render canvas to text instead -->
 
     </a-marker>
