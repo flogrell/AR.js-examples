@@ -58,63 +58,12 @@ AFRAME.registerComponent('vidhandler', {
 	
  <a-assets>
               <a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
-	      <img id="pixels" src="images/pixels.png" /> 
+	      <!--<img id="pixels" src="images/pixels.png" /> -->
 	      <img id="fridge" src="images/fridge.JPG" />
 	      <img id="imgtest" src="images/kuehlbox.jpg"> 
-	      <!--<a-asset-item id="dom" src="models/dom/A95XNTJMFCEC0P92ZM4PJXDN6.gltf"></a-asset-item>
-	      <a-asset-item id="else" src="models/goldelse/model.gltf"></a-asset-item>
-	      <a-asset-item id="else-obj" src="models/goldelse_obj/model.obj"></a-asset-item>
-    	      <a-asset-item id="else-mtl" src="models/goldelse_obj/model.mtl"></a-asset-item>
-	      <a-asset-item id="bbtor-obj" src="models/bbtor_obj/model.obj"></a-asset-item>
-    	      <a-asset-item id="bbtor-mtl" src="models/bbtor_obj/model.mtl"></a-asset-item>
-	      <a-asset-item id="tv-obj" src="models/tvtowerobj/model.obj"></a-asset-item>
-    	      <a-asset-item id="tv-mtl" src="models/tvtowerobj/model.mtl"></a-asset-item>
 	      <video id="vidtest" loop="true" src="videos/rick.mp4" crossorigin></video>
-	      <img id="img360" src="images/kuehlschrank.jpeg" />-->
     </a-assets>
-    <!--
-    <a-marker type="barcode" value="0">
-        <a-entity position="0 -1 -1" 
-                  rotation="0 0 0"
-                  scale="0.60 0.60 0.60"
-                  gltf-model="#dom" >
-        </a-entity>
-    </a-marker>
-
-    <a-marker type="barcode" value="10">
-        <a-entity position="0 -1 -1" 
-                  rotation="270 90 0"
-                  scale="0.50 0.50 0.50"
-                  obj-model="obj: #else-obj; mtl: #else-mtl" >
-        </a-entity>
-    </a-marker>
-
-    <a-marker type="barcode" value="15">
-        <a-entity position="0 -1 -1" 
-                  rotation="270 90 0"
-                  scale="0.30 0.30 0.30"
-                  obj-model="obj: #bbtor-obj; mtl: #bbtor-mtl" >
-        </a-entity>
-    </a-marker>
--->
-<!-- for tests:	
-    <a-marker type="barcode" value="15">
-        <a-entity position="0 0 0" 
-                  rotation="270 90 0"
-                  scale="0.30 0.30 0.30"
-                  gltf-model="#bbtor" >
-        </a-entity>
-    </a-marker>
--->
-<!--
-    <a-marker type="barcode" value="9">
-        <a-entity position="0 -1 -1" 
-                  rotation="0 0 0"
-                  scale="0.009 0.009 0.009"
-                  obj-model="obj: #tv-obj; mtl: #tv-mtl">
-        </a-entity>
-    </a-marker>
--->
+	
      <a-marker type="barcode" value="1">
 	<a-plane position="0 0 -1" 
                  rotation="-90 0 0"
@@ -127,16 +76,8 @@ AFRAME.registerComponent('vidhandler', {
     <a-marker type="barcode" value="15"></a-marker>
     <a-marker type="barcode" value="9"></a-marker>
     <a-marker type="barcode" value="1"></a-marker>
-    <a-marker type="barcode" value="2" vidhandler></a-marker>
-    <a-marker type="barcode" value="12"></a-marker>
-<!--
-    <a-marker type="barcode" value="2" vidhandler>
-	 <a-plane position='0 0 0'  
-		 rotation="-90 0 0" 
-		 material='src:#vidtest'>
-	</a-plane>
-    </a-marker>
--->
+    <!--  <a-marker type="barcode" value="2" vidhandler></a-marker> -->
+
     <!-- 3D text -->
     <a-marker type="barcode" value="3">
       	<a-entity text-geometry="value: Ein AR Marker. ; font: #exoFont; size: 0.2;"
@@ -145,24 +86,34 @@ AFRAME.registerComponent('vidhandler', {
       	</a-entity>
     </a-marker>
 
-<!-- for tests:
-    <a-marker type="barcode" value="11">
-      	<a-link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" image="#img360" title="" peekmoder=true rotation="-90 0 0">
-      	</a-link>
+    <a-marker type="barcode" value="3">	
+		<!-- positioning a plane directly below text for increased visibility; need to adjust position to avoid z-fighting.  -->
+		<a-plane color="white" rotation="-90 0 0" position="0 -0.25 0" width="3" material="transparent: true; opacity: 0.90"></a-plane>
+		<!-- for more properties, see https://github.com/aframevr/aframe/blob/master/docs/components/text.md -->
+		<a-text value="This is an AR Marker! Find more and scan them. Das ist ein AR Marker! Finde und scanne mehr davon." font="fonts/Exo2Bold.fnt" color="blue" rotation="-90 0 0" align="center" width="3" ></a-text>
+		<!-- avoiding z-fighting is difficult; may want to render canvas to text instead -->
     </a-marker>
--->
-<!-- 
-    <a-marker type="barcode" value="12">
-      	<a-link image="#img360" title="Minibar" position="0 0 -1" rotation="-90 0 0">
-      	</a-link>
-    </a-marker>
--->
 
     <a-marker type="barcode" value="12">
 	<a-plane position="0 0 -1" 
                  rotation="-90 0 0"
                  material="src: #fridge">
         </a-plane>
+    </a-marker>
+
+    <a-marker type="barcode" value="2" vidhandler>
+	 <a-plane position='0 0 0'  
+		 rotation="-90 0 0" 
+		 material='src:#vidtest'>
+	</a-plane>
+	  <!-- Text label floating above the marker -->
+	<a-text value="Nothing here..." 
+	         position="0 0.3 0" 
+	         rotation="-90 0 0" 
+	         align="center" 
+	         width="2" 
+	         color="white">
+	</a-text>
     </a-marker>
     
     <a-entity camera></a-entity>
@@ -181,9 +132,6 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     { type: 'a-asset-item', id: 'bbtor-mtl', src: 'models/bbtor_obj/model.mtl' },
     { type: 'a-asset-item', id: 'tv-obj', src: 'models/tvtowerobj/model.obj' },
     { type: 'a-asset-item', id: 'tv-mtl', src: 'models/tvtowerobj/model.mtl' },
-    { type: 'video', id: 'vidtest', src: 'videos/rick.mp4', loop: true, crossorigin: 'anonymous' },
-    { type: 'img', id: 'fridge', src: 'images/fridge.JPG' },
-    { type: 'img', id: 'imgtest', src: 'images/kuehlbox.jpg' },
   ];
 
   secondaryAssets.forEach(assetData => {
@@ -230,29 +178,13 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  ent9.setAttribute('rotation', '0 0 0');
 	  marker9.appendChild(ent9);
 	
-	  // Marker 1 - Image plane (imgtest)
-	  const marker1 = document.querySelector('a-marker[value="1"]');
-	  const imgPlane1 = document.createElement('a-plane');
-	  imgPlane1.setAttribute('position', '0 0 -1');
-	  imgPlane1.setAttribute('rotation', '-90 0 0');
-	  imgPlane1.setAttribute('material', 'src: #imgtest');
-	  marker1.appendChild(imgPlane1);
-	
 	  // Marker 2 - Video plane
-	  const marker2 = document.querySelector('a-marker[value="2"]');
-	  const videoPlane = document.createElement('a-plane');
-	  videoPlane.setAttribute('position', '0 0 0');
-	  videoPlane.setAttribute('rotation', '-90 0 0');
-	  videoPlane.setAttribute('material', 'src: #vidtest');
-	  marker2.appendChild(videoPlane);
-	
-	  // Marker 12 - Image plane (fridge)
-	  const marker12 = document.querySelector('a-marker[value="12"]');
-	  const imgPlane2 = document.createElement('a-plane');
-	  imgPlane2.setAttribute('position', '0 0 -1');
-	  imgPlane2.setAttribute('rotation', '-90 0 0');
-	  imgPlane2.setAttribute('material', 'src: #fridge');
-	  marker12.appendChild(imgPlane2);
+	  //const marker2 = document.querySelector('a-marker[value="2"]');
+	  //const videoPlane = document.createElement('a-plane');
+	  //videoPlane.setAttribute('position', '0 0 0');
+	  //videoPlane.setAttribute('rotation', '-90 0 0');
+	  //videoPlane.setAttribute('material', 'src: #vidtest');
+	  //marker2.appendChild(videoPlane);
   }
 
   // Wait a moment to let A-Frame register the new assets
