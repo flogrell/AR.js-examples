@@ -194,6 +194,67 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     assets.appendChild(el);
   });
 
+  function insertEntities() {
+  // Marker 0 - GLTF model
+	  const marker0 = document.querySelector('a-marker[value="0"]');
+	  const ent0 = document.createElement('a-entity');
+	  ent0.setAttribute('gltf-model', '#dom');
+	  ent0.setAttribute('position', '0 -1 -1');
+	  ent0.setAttribute('scale', '0.6 0.6 0.6');
+	  marker0.appendChild(ent0);
+	
+	  // Marker 10 - Goldelse OBJ/MTL
+	  const marker10 = document.querySelector('a-marker[value="10"]');
+	  const ent10 = document.createElement('a-entity');
+	  ent10.setAttribute('obj-model', 'obj: #else-obj; mtl: #else-mtl');
+	  ent10.setAttribute('position', '0 -1 -1');
+	  ent10.setAttribute('scale', '0.5 0.5 0.5');
+	  ent10.setAttribute('rotation', '270 90 0');
+	  marker10.appendChild(ent10);
+	
+	  // Marker 15 - Brandenburger Tor OBJ/MTL
+	  const marker15 = document.querySelector('a-marker[value="15"]');
+	  const ent15 = document.createElement('a-entity');
+	  ent15.setAttribute('obj-model', 'obj: #bbtor-obj; mtl: #bbtor-mtl');
+	  ent15.setAttribute('position', '0 -1 -1');
+	  ent15.setAttribute('scale', '0.3 0.3 0.3');
+	  ent15.setAttribute('rotation', '270 90 0');
+	  marker15.appendChild(ent15);
+	
+	  // Marker 9 - TV Tower OBJ/MTL
+	  const marker9 = document.querySelector('a-marker[value="9"]');
+	  const ent9 = document.createElement('a-entity');
+	  ent9.setAttribute('obj-model', 'obj: #tv-obj; mtl: #tv-mtl');
+	  ent9.setAttribute('position', '0 -1 -1');
+	  ent9.setAttribute('scale', '0.009 0.009 0.009');
+	  ent9.setAttribute('rotation', '0 0 0');
+	  marker9.appendChild(ent9);
+	
+	  // Marker 1 - Image plane (imgtest)
+	  const marker1 = document.querySelector('a-marker[value="1"]');
+	  const imgPlane1 = document.createElement('a-plane');
+	  imgPlane1.setAttribute('position', '0 0 -1');
+	  imgPlane1.setAttribute('rotation', '-90 0 0');
+	  imgPlane1.setAttribute('material', 'src: #imgtest');
+	  marker1.appendChild(imgPlane1);
+	
+	  // Marker 2 - Video plane
+	  const marker2 = document.querySelector('a-marker[value="2"]');
+	  const videoPlane = document.createElement('a-plane');
+	  videoPlane.setAttribute('position', '0 0 0');
+	  videoPlane.setAttribute('rotation', '-90 0 0');
+	  videoPlane.setAttribute('material', 'src: #vidtest');
+	  marker2.appendChild(videoPlane);
+	
+	  // Marker 12 - Image plane (fridge)
+	  const marker12 = document.querySelector('a-marker[value="12"]');
+	  const imgPlane2 = document.createElement('a-plane');
+	  imgPlane2.setAttribute('position', '0 0 -1');
+	  imgPlane2.setAttribute('rotation', '-90 0 0');
+	  imgPlane2.setAttribute('material', 'src: #fridge');
+	  marker12.appendChild(imgPlane2);
+  }
+
   // Wait a moment to let A-Frame register the new assets
   setTimeout(() => {
     console.log('All assets appended. Inserting entities...');
