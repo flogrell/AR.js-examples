@@ -37,22 +37,10 @@ AFRAME.registerComponent('vidhandler', {
 });
 </script>
 
-<!--<div id="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:sans-serif;">
-  Loading AR Scene...
-</div>
-
-<script>
-  document.querySelector('a-scene').addEventListener('loaded', () => {
-    document.getElementById('loader').style.display = 'none';
-  });
-</script> -->
 <body style="margin: 0px; overflow: hidden;">
-	
-<!-- add some info at the top of the page -->
-<p align="center">Willkommen in der AR-APP<br>Schaut euch nach AR-Markern um und scannt sie!<br>Look for AR-marks and scan them!</p> 
-	
-<a-scene embedded vr-mode-ui="enabled: true;" 
-	arjs="debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
+
+<a-scene embedded vr-mode-ui="enabled: false;" 
+	arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
 	renderer= "precision: medium; colorManagement: true;">
 
 	
@@ -65,7 +53,7 @@ AFRAME.registerComponent('vidhandler', {
     </a-assets>
 	
      <a-marker type="barcode" value="1">
-	<a-plane position="0 0 -1" 
+	<a-plane position="0 0 0" 
                  rotation="-90 0 0"
                  material="src: #imgtest;">
         </a-plane>
@@ -78,14 +66,6 @@ AFRAME.registerComponent('vidhandler', {
     <a-marker type="barcode" value="1"></a-marker>
     <!--  <a-marker type="barcode" value="2" vidhandler></a-marker> -->
 
-    <!-- 3D text -->
-    <a-marker type="barcode" value="3">
-      	<a-entity text-geometry="value: Ein AR Marker. ; font: #exoFont; size: 0.2;"
-      			material="color: blue; src: #pixels; repeat: 0.5 0.5;" 
-      			rotation="-90 0 0" position="-1 -1 -1">
-      	</a-entity>
-    </a-marker>
-
     <a-marker type="barcode" value="3">	
 		<!-- positioning a plane directly below text for increased visibility; need to adjust position to avoid z-fighting.  -->
 		<a-plane color="white" rotation="-90 0 0" position="0 -0.25 0" width="3" material="transparent: true; opacity: 0.90"></a-plane>
@@ -95,7 +75,7 @@ AFRAME.registerComponent('vidhandler', {
     </a-marker>
 
     <a-marker type="barcode" value="12">
-	<a-plane position="0 0 -1" 
+	<a-plane position="0 0 0" 
                  rotation="-90 0 0"
                  material="src: #fridge">
         </a-plane>
@@ -147,7 +127,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  const marker0 = document.querySelector('a-marker[value="0"]');
 	  const ent0 = document.createElement('a-entity');
 	  ent0.setAttribute('gltf-model', '#dom');
-	  ent0.setAttribute('position', '0 -1 -1');
+	  ent0.setAttribute('position', '0 0 0');
 	  ent0.setAttribute('scale', '0.6 0.6 0.6');
 	  marker0.appendChild(ent0);
 	
@@ -155,7 +135,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  const marker10 = document.querySelector('a-marker[value="10"]');
 	  const ent10 = document.createElement('a-entity');
 	  ent10.setAttribute('obj-model', 'obj: #else-obj; mtl: #else-mtl');
-	  ent10.setAttribute('position', '0 -1 -1');
+	  ent10.setAttribute('position', '0 0 0');
 	  ent10.setAttribute('scale', '0.5 0.5 0.5');
 	  ent10.setAttribute('rotation', '270 90 0');
 	  marker10.appendChild(ent10);
@@ -164,7 +144,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  const marker15 = document.querySelector('a-marker[value="15"]');
 	  const ent15 = document.createElement('a-entity');
 	  ent15.setAttribute('obj-model', 'obj: #bbtor-obj; mtl: #bbtor-mtl');
-	  ent15.setAttribute('position', '0 -1 -1');
+	  ent15.setAttribute('position', '0 0 0');
 	  ent15.setAttribute('scale', '0.3 0.3 0.3');
 	  ent15.setAttribute('rotation', '270 90 0');
 	  marker15.appendChild(ent15);
@@ -173,7 +153,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  const marker9 = document.querySelector('a-marker[value="9"]');
 	  const ent9 = document.createElement('a-entity');
 	  ent9.setAttribute('obj-model', 'obj: #tv-obj; mtl: #tv-mtl');
-	  ent9.setAttribute('position', '0 -1 -1');
+	  ent9.setAttribute('position', '0 0 0');
 	  ent9.setAttribute('scale', '0.009 0.009 0.009');
 	  ent9.setAttribute('rotation', '0 0 0');
 	  marker9.appendChild(ent9);
