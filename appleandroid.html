@@ -111,6 +111,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
     { type: 'a-asset-item', id: 'else-mtl', src: 'models/goldelse_obj/model.mtl' },
     { type: 'a-asset-item', id: 'bbtor-obj', src: 'models/bbtor_obj/model.obj' },
     { type: 'a-asset-item', id: 'bbtor-mtl', src: 'models/bbtor_obj/model.mtl' },
+    { type: 'a-asset-item', id: 'bbtor', src: 'models/bbtor/model.gltf' },
     { type: 'a-asset-item', id: 'tv-obj', src: 'models/tvtowerobj/model.obj' },
     { type: 'a-asset-item', id: 'tv-mtl', src: 'models/tvtowerobj/model.mtl' },
   ];
@@ -153,7 +154,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  // Marker 9 - TV Tower OBJ/MTL
 	  const marker9 = document.querySelector('a-marker[value="9"]');
 	  const ent9 = document.createElement('a-entity');
-	  ent9.setAttribute('obj-model', 'obj: #tv-obj; mtl: #tv-mtl');
+	  ent9.setAttribute('gltf-model', '#bbtor');
 	  ent9.setAttribute('position', '0 0 0');
 	  ent9.setAttribute('scale', '0.009 0.009 0.009');
 	  ent9.setAttribute('rotation', '0 0 0');
