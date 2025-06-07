@@ -42,8 +42,6 @@ AFRAME.registerComponent('vidhandler', {
 <a-scene embedded vr-mode-ui="enabled: false;" 
 	arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" 
 	renderer= "precision: medium; colorManagement: true;">
-
-<a-entity light="type: ambient; color: #FFFFFF; intensity: 1"></a-entity>
 	
  <a-assets>
               <a-asset-item id="exoFont" src="fonts/exoBlack.typeface.json"></a-asset-item>
@@ -145,7 +143,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  // Marker 15 - Brandenburger Tor OBJ/MTL
 	  const marker15 = document.querySelector('a-marker[value="15"]');
 	  const ent15 = document.createElement('a-entity');
-	  ent15.setAttribute('obj-model', 'obj: #bbtor-obj; mtl: #bbtor-mtl');
+	  ent15.setAttribute('gltf-model', '#bbtor');
 	  ent15.setAttribute('position', '0 0 0');
 	  ent15.setAttribute('scale', '0.3 0.3 0.3');
 	  ent15.setAttribute('rotation', '270 90 0');
@@ -154,7 +152,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
 	  // Marker 9 - TV Tower OBJ/MTL
 	  const marker9 = document.querySelector('a-marker[value="9"]');
 	  const ent9 = document.createElement('a-entity');
-	  ent9.setAttribute('gltf-model', '#bbtor');
+	  ent9.setAttribute('obj-model', 'obj: #tv-obj; mtl: #tv-mtl');
 	  ent9.setAttribute('position', '0 0 0');
 	  ent9.setAttribute('scale', '0.009 0.009 0.009');
 	  ent9.setAttribute('rotation', '0 0 0');
